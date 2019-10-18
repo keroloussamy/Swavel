@@ -1,0 +1,31 @@
+﻿@model Swavel.ViewModel.RandomMovieViewModel
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
+    <table class="table table-bordered table-­hover">
+        <thead class="@className">
+            <tr>
+                <th>@Model.Movie.Name</th>
+            </tr>
+        </thead>
+        @if (Model.Customers.Count == 0)
+        {
+            <text>Thers's nothing here.</text>
+        }
+        else
+        { int i = 0;
+            foreach (var customer in Model.Customers)
+            {
+                i++;
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", new { id = i})</td>
+                </tr>
+            }
+        }
+        
+    </table>
