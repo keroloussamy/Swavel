@@ -24,7 +24,7 @@ namespace Swavel
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumen.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
         }
     }
 }
