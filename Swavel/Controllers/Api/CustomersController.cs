@@ -4,6 +4,7 @@ using Swavel.Models;
 using System;
 using System.Linq;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace Swavel.Controllers.Api
 {
@@ -19,7 +20,12 @@ namespace Swavel.Controllers.Api
         //Get api/customers
         public IHttpActionResult GetCustomers()
         {
-            return Ok(_context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>));
+            var customerDtos = _context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customerDtos);
         }
 
         //Get api/customers/1
